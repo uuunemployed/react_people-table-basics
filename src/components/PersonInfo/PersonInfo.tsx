@@ -35,18 +35,14 @@ export const PersonInfo: React.FC<Props> = ({ person, people }) => {
         'has-background-warning': person.slug === selectedPerson,
       })}
     >
-      <PersonLink
-        name={person.name}
-        slug={person.slug}
-        sex={person.sex as 'm' | 'f'}
-      />
+      <PersonLink person={person} fallbackName={person.name} />
       <td>{person.sex}</td>
       <td>{person.born}</td>
       <td>{person.died}</td>
 
-      <PersonLink name={person.motherName} slug={mother?.slug} sex="f" />
+      <PersonLink person={mother} fallbackName={person.motherName} />
 
-      <PersonLink name={person.fatherName} slug={father?.slug} sex="m" />
+      <PersonLink person={father} fallbackName={person.fatherName} />
     </tr>
   );
 };

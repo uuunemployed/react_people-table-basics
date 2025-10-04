@@ -7,15 +7,15 @@ import { PeopleTable } from '../components/PeopleTable/PeopleTable';
 export const PeoplePage = () => {
   const [people, setPeople] = useState<Person[]>([]);
   const [loading, setLoading] = useState(false);
-  const [isErrorMessageShow, setisErrorMessageShow] = useState(false);
+  const [isErrorMessageShow, setIsErrorMessageShow] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    setisErrorMessageShow(false);
+    setIsErrorMessageShow(false);
     getPeople()
       .then(setPeople)
       .catch(() => {
-        setisErrorMessageShow(true);
+        setIsErrorMessageShow(true);
       })
       .finally(() => {
         setLoading(false);
@@ -36,7 +36,7 @@ export const PeoplePage = () => {
             </p>
           )}
 
-          {!isErrorMessageShow && !loading && people.length === 0 && (
+          {!isErrorMessageShow && !loading && !!people.length && (
             <p data-cy="noPeopleMessage">There are no people on the server</p>
           )}
 
